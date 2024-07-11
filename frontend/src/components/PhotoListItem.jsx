@@ -7,7 +7,7 @@ const PhotoListItem = ({ user }) => {
       <div>
         <img
           src={user.imageSource}
-          alt="someone holding a coffee cup and looking into their mobile phone at Starbucks listing on a place finder app"
+          alt="user image"
         />
       </div>
       <div>

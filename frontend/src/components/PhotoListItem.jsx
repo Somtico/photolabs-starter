@@ -1,21 +1,21 @@
 import React from "react";
 import "../styles/PhotoListItem.scss";
 
-const PhotoListItem = ({ user }) => {
+const PhotoListItem = ({ photoData }) => {
   return (
     <React.Fragment>
       <div>
         <img
-          src={user.imageSource}
+          src={photoData.imageSource}
           alt="user image"
         />
       </div>
       <div>
-        <img src={user.profile} alt="profile" />
-        <p>{user.username}</p>
+        <img src={photoData.profile} alt="profile" />
+        <p>{photoData.username}</p>
         <p>
-          {user.location.city}{" "}
-          {user.location.country}
+          {photoData.location.city}{" "}
+          {photoData.location.country}
         </p>
       </div>
     </React.Fragment>

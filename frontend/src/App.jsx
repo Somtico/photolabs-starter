@@ -1,7 +1,7 @@
-import React from 'react';
+import React from "react";
 
-import PhotoListItem from './components/PhotoListItem';
-import './App.scss';
+import PhotoListItem from "./components/PhotoListItem";
+import "./App.scss";
 
 // Note: Rendering a single component to build components in isolation
 const sampleDataForPhotoListItem = {
@@ -15,10 +15,12 @@ const sampleDataForPhotoListItem = {
   profile: `${process.env.PUBLIC_URL}/profile-1.jpg`,
 };
 
+const photos = new Array(3);
+
 const App = () => {
   return (
     <div className="App">
-      <PhotoListItem photoData={sampleDataForPhotoListItem}/>
+      {photos.fill(<PhotoListItem photoData={sampleDataForPhotoListItem} />)}
     </div>
   );
 };

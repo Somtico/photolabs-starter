@@ -7,18 +7,18 @@ const PhotoListItem = ({ photoData }) => {
     <div className="photo-list__item">
       <PhotoFavButton />
       <img
-        src={photoData.imageSource}
+        src={photoData.urls.full}
         alt="user's cover image"
         className="photo-list__image"
       />
       <div className="photo-list__user-details">
         <img
-          src={photoData.profile}
+          src={photoData.user.profile}
           alt="user's profile photo"
           className="photo-list__user-profile"
         />
         <div className="photo-list__user-info">
-          <p>{photoData.username}</p>
+          <p>{photoData.user.username}</p>
           <p className="photo-list__user-location">
             {photoData.location.city}
             {", "}

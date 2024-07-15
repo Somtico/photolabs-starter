@@ -3,22 +3,30 @@ import "../styles/PhotoListItem.scss";
 
 const PhotoListItem = ({ photoData }) => {
   return (
-    <React.Fragment>
+    <div className="photo-list__item">
       <div>
         <img
           src={photoData.imageSource}
           alt="user image"
+          className="photo-list__image"
         />
       </div>
-      <div>
-        <img src={photoData.profile} alt="profile" />
-        <p>{photoData.username}</p>
-        <p>
-          {photoData.location.city}{" "}
-          {photoData.location.country}
-        </p>
+      <div className="photo-list__user-details">
+        <img
+          src={photoData.profile}
+          alt="profile"
+          className="photo-list__user-profile"
+        />
+        <div>
+          <p className="photo-list__user-info">{photoData.username}</p>
+          <p className="photo-list__user-location">
+            {photoData.location.city}
+            {", "}
+            {photoData.location.country}
+          </p>
+        </div>
       </div>
-    </React.Fragment>
+    </div>
   );
 };
 

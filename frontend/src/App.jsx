@@ -20,7 +20,7 @@ const photos = new Array(3);
 const App = () => {
   return (
     <div className="App">
-      {photos.fill(<PhotoListItem photoData={sampleDataForPhotoListItem} />)}
+      {photos.fill().map((_, index) => (<PhotoListItem key={index} photoData={sampleDataForPhotoListItem} />))}
     </div>
   );
 };

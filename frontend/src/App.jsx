@@ -2,6 +2,7 @@ import React from "react";
 
 import PhotoListItem from "./components/PhotoListItem";
 import "./App.scss";
+import PhotoFavButton from "components/PhotoFavButton";
 
 // Note: Rendering a single component to build components in isolation
 const sampleDataForPhotoListItem = {

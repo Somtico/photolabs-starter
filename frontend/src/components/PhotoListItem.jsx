@@ -1,9 +1,11 @@
 import React from "react";
 import "../styles/PhotoListItem.scss";
+import PhotoFavButton from "./PhotoFavButton";
 
 const PhotoListItem = ({ photoData }) => {
   return (
     <div className="photo-list__item">
+      <PhotoFavButton />
       <img
         src={photoData.imageSource}
         alt="user's cover image"

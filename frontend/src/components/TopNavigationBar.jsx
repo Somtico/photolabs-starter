@@ -3,7 +3,7 @@ import TopicList from "./TopicList";
 import FavBadge from "./FavBadge";
 import "../styles/TopNavigationBar.scss";
 
-const TopNavigation = ({ topics }) => {
+const TopNavigationBar = ({ topics }) => {
   return (
     <div className="top-nav-bar">
       <span className="top-nav-bar__logo">PhotoLabs</span>
@@ -15,4 +15,4 @@ const TopNavigation = ({ topics }) => {
   );
 };
 
-export default TopNavigation;
+export default TopNavigationBar;

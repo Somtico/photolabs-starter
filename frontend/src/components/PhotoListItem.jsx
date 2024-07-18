@@ -2,10 +2,10 @@ import React from "react";
 import "../styles/PhotoListItem.scss";
 import PhotoFavButton from "./PhotoFavButton";
 
-const PhotoListItem = ({ photoData }) => {
+const PhotoListItem = ({ photoData, favBadge }) => {
   return (
     <div className="photo-list__item">
-      <PhotoFavButton />
+      <PhotoFavButton photoId={photoData.id} favBadge={favBadge}/>
       <img
         src={photoData.urls.full}
         alt="user's cover image"

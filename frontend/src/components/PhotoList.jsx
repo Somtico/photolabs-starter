@@ -3,13 +3,15 @@ import React from "react";
 import "../styles/PhotoList.scss";
 import PhotoListItem from "./PhotoListItem";
 
-const PhotoList = ({ photos }) => {
+const PhotoList = ({ photos, favBadge }) => {
   return (
-    <ul className="photo-list">
-      {photos.map((photo) => (
-        <PhotoListItem key={photo.id} photoData={photo} />
-      ))}
-    </ul>
+    <div>
+      <ul className="photo-list">
+        {photos.map((photo) => (
+          <PhotoListItem key={photo.id} photoData={photo} favBadge={favBadge} />
+        ))}
+      </ul>
+    </div>
   );
 };
 

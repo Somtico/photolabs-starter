@@ -2,8 +2,8 @@ import React from 'react';
 import FavIcon from './FavIcon';
 import '../styles/FavBadge.scss';
 
-const FavBadge = ({ favBadge }) => {
-  const { selected } = favBadge;
+const FavBadge = ({ isFavPhotoExist }) => {
+  const { selected } = isFavPhotoExist;
 
   return (
     <div className='fav-badge'>

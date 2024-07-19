@@ -8,8 +8,8 @@ const HomeRoute = ({ topics, photos }) => {
   const favBadge = useFavBadge();
   return (
     <div className="home-route">
-      <TopNavigationBar topics={topics} favBadge={favBadge} />
-      <PhotoList photos={photos} favBadge={favBadge} />
+      <TopNavigationBar topics={topics} isFavPhotoExist={favBadge} />
+      <PhotoList photos={photos} isFavPhotoExist={favBadge} />
     </div>
   );
 };

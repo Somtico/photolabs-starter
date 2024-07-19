@@ -2,8 +2,8 @@ import React from "react";
 import FavIcon from "./FavIcon";
 import "../styles/PhotoFavButton.scss";
 
-function PhotoFavButton({ photoId, favBadge }) {
-  const { selected, displayAlert, handleClick } = favBadge;
+function PhotoFavButton({ photoId, isFavPhotoExist }) {
+  const { selected, displayAlert, handleClick } = isFavPhotoExist;
 
   return (
     <div className="photo-list__fav-icon" onClick={() => handleClick(photoId)}>

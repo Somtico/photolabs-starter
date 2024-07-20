@@ -1,15 +1,14 @@
 import React from "react";
 import "../styles/PhotoList.scss";
 import PhotoListItem from "./PhotoListItem";
-import PhotoDetailsModal from "routes/PhotoDetailsModal";
 
-const PhotoList = ({ photos, isFavPhotoExist, isModalVisible, setIsModalVisible }) => {
+const PhotoList = ({
+  photos,
+  isFavPhotoExist,
+  setIsModalVisible,
+}) => {
   const handlePhotoClick = () => {
     setIsModalVisible(true);
-  };
-
-  const handleCloseModal = () => {
-    setIsModalVisible(false);
   };
 
   return (
@@ -24,7 +23,6 @@ const PhotoList = ({ photos, isFavPhotoExist, isModalVisible, setIsModalVisible 
           />
         ))}
       </ul>
-      <PhotoDetailsModal isVisible={isModalVisible} onClose={handleCloseModal} />
     </div>
   );
 };

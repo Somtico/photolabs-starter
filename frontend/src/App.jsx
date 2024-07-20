@@ -3,17 +3,25 @@ import HomeRoute from "routes/HomeRoute";
 import photos from "mocks/photos";
 import topics from "mocks/topics";
 import "./App.scss";
+import PhotoDetailsModal from "routes/PhotoDetailsModal";
 
 const App = () => {
   const [isModalVisible, setIsModalVisible] = useState(false);
+
+  const handleCloseModal = () => {
+    setIsModalVisible(false);
+  };
 
   return (
     <div className="App">
       <HomeRoute
         topics={topics}
         photos={photos}
-        isModalVisible={isModalVisible}
         setIsModalVisible={setIsModalVisible}
+      />
+      <PhotoDetailsModal
+        isVisible={isModalVisible}
+        onClose={handleCloseModal}
       />
     </div>
   );

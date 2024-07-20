@@ -2,7 +2,7 @@ import React from "react";
 import "../styles/PhotoListItem.scss";
 import PhotoFavButton from "./PhotoFavButton";
 
-const PhotoListItem = ({ photoData, isFavPhotoExist }) => {
+const PhotoListItem = ({ photoData, isFavPhotoExist, onPhotoClick }) => {
   return (
     <div className="photo-list__item">
       <PhotoFavButton photoId={photoData.id} isFavPhotoExist={isFavPhotoExist}/>
@@ -10,6 +10,7 @@ const PhotoListItem = ({ photoData, isFavPhotoExist }) => {
         src={photoData.urls.full}
         alt="user's cover image"
         className="photo-list__image"
+        onClick={onPhotoClick}
       />
       <div className="photo-list__user-details">
         <img

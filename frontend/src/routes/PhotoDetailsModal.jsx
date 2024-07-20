@@ -35,9 +35,11 @@ const PhotoDetailsModal = ({
           <div className="photo-details-modal__photographer-info">
             <p>{photo.user.username}</p>
             <p className="photo-details-modal__photographer-location">
-              {photo.location ? `${photo.location.city}, ` : ""}
-              {photo.location ? photo.location.country : ""}
-            </p>
+            {photo.location &&
+              (photo.location.city ? `${photo.location.city}, ` : "")}
+            {photo.location &&
+              (photo.location.country ? photo.location.country : "")}
+          </p>
           </div>
         </div>
         <div>

@@ -24,8 +24,10 @@ const PhotoListItem = ({ photoData, isFavPhotoExist, onPhotoClick }) => {
         <div className="photo-list__user-info">
           <p>{photoData.user.username}</p>
           <p className="photo-list__user-location">
-            {photoData.location ? `${photoData.location.city}, ` : ""}
-            {photoData.location ? photoData.location.country : ""}
+            {photoData.location &&
+              (photoData.location.city ? `${photoData.location.city}, ` : "")}
+            {photoData.location &&
+              (photoData.location.country ? photoData.location.country : "")}
           </p>
         </div>
       </div>

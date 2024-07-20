@@ -5,7 +5,10 @@ import PhotoFavButton from "./PhotoFavButton";
 const PhotoListItem = ({ photoData, isFavPhotoExist, onPhotoClick }) => {
   return (
     <div className="photo-list__item">
-      <PhotoFavButton photoId={photoData.id} isFavPhotoExist={isFavPhotoExist}/>
+      <PhotoFavButton
+        photoId={photoData.id}
+        isFavPhotoExist={isFavPhotoExist}
+      />
       <img
         src={photoData.urls.full}
         alt="user's cover image"

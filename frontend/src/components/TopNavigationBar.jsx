@@ -9,7 +9,7 @@ const TopNavigationBar = ({ topics, isFavPhotoExist }) => {
       <span className="top-nav-bar__logo">PhotoLabs</span>
       <div className="top-nav-bar">
         <TopicList topics={topics} />
-        <FavBadge isFavPhotoExist={isFavPhotoExist}/>
+        <FavBadge isFavPhotoExist={isFavPhotoExist} />
       </div>
     </div>
   );

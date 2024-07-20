@@ -7,7 +7,7 @@ const useFavBadge = () => {
   const handleClick = (photoId) => {
     setSelected((prevSelected) => ({
       ...prevSelected,
-      [photoId]: !prevSelected[photoId]
+      [photoId]: !prevSelected[photoId],
     }));
     setDisplayAlert(true);
   };

@@ -10,7 +10,7 @@ const PhotoListItem = ({ photoData, isFavPhotoExist, onPhotoClick }) => {
         isFavPhotoExist={isFavPhotoExist}
       />
       <img
-        src={photoData.urls.full}
+        src={photoData.urls.regular}
         alt="user's cover image"
         className="photo-list__image"
         onClick={onPhotoClick}

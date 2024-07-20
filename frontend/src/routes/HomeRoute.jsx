@@ -4,8 +4,9 @@ import PhotoList from "components/PhotoList";
 import "../styles/HomeRoute.scss";
 import useFavBadge from "components/useFavBadge";
 
-const HomeRoute = ({ topics, photos, setIsModalVisible }) => {
+const HomeRoute = ({ topics, photos, setIsModalVisible, setSelectedPhoto }) => {
   const favBadge = useFavBadge();
+
   return (
     <div className="home-route">
       <TopNavigationBar topics={topics} isFavPhotoExist={favBadge} />
@@ -13,6 +14,7 @@ const HomeRoute = ({ topics, photos, setIsModalVisible }) => {
         photos={photos}
         isFavPhotoExist={favBadge}
         setIsModalVisible={setIsModalVisible}
+        setSelectedPhoto={setSelectedPhoto}
       />
     </div>
   );

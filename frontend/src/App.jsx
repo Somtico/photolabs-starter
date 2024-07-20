@@ -7,6 +7,7 @@ import PhotoDetailsModal from "routes/PhotoDetailsModal";
 
 const App = () => {
   const [isModalVisible, setIsModalVisible] = useState(false);
+  const [selectedPhoto, setSelectedPhoto] = useState(null);
 
   const handleCloseModal = () => {
     setIsModalVisible(false);
@@ -18,8 +19,11 @@ const App = () => {
         topics={topics}
         photos={photos}
         setIsModalVisible={setIsModalVisible}
+        setSelectedPhoto={setSelectedPhoto}
       />
-      {isModalVisible && <PhotoDetailsModal onClose={handleCloseModal} />}
+      {isModalVisible && (
+        <PhotoDetailsModal onClose={handleCloseModal} photo={selectedPhoto} />
+      )}
     </div>
   );
 };

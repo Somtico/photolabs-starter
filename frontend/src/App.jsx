@@ -19,10 +19,7 @@ const App = () => {
         photos={photos}
         setIsModalVisible={setIsModalVisible}
       />
-      <PhotoDetailsModal
-        isVisible={isModalVisible}
-        onClose={handleCloseModal}
-      />
+      {isModalVisible && <PhotoDetailsModal onClose={handleCloseModal} />}
     </div>
   );
 };

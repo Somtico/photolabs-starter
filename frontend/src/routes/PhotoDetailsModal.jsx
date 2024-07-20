@@ -12,9 +12,8 @@ const PhotoDetailsModal = ({
   setIsModalVisible,
   setSelectedPhoto,
 }) => {
-
-  const similarPhotos = photos.filter(p => p.id !== photo.id); // Filter out the current photo
-
+  const similarPhotos = photos.filter((p) => p.id !== photo.id); // Filter out the current photo
+    
   return (
     <div className="photo-details-modal">
       <button className="photo-details-modal__close-button" onClick={onClose}>
@@ -36,9 +35,8 @@ const PhotoDetailsModal = ({
           <div className="photo-details-modal__photographer-info">
             <p>{photo.user.username}</p>
             <p className="photo-details-modal__photographer-location">
-              {photo.location.city}
-              {", "}
-              {photo.location.country}
+            {photo.location ? `${photo.location.city}, ` : ""}
+            {photo.location ? photo.location.country : ""}
             </p>
           </div>
         </div>

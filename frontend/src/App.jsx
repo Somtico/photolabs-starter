@@ -4,10 +4,12 @@ import photos from "mocks/photos";
 import topics from "mocks/topics";
 import "./App.scss";
 import PhotoDetailsModal from "routes/PhotoDetailsModal";
+import useFavBadge from "components/useFavBadge";
 
 const App = () => {
   const [isModalVisible, setIsModalVisible] = useState(false);
   const [selectedPhoto, setSelectedPhoto] = useState(null);
+  const favBadge = useFavBadge();
 
   const handleCloseModal = () => {
     setIsModalVisible(false);
@@ -20,9 +22,15 @@ const App = () => {
         photos={photos}
         setIsModalVisible={setIsModalVisible}
         setSelectedPhoto={setSelectedPhoto}
+        favBadge={favBadge}
       />
       {isModalVisible && (
-        <PhotoDetailsModal onClose={handleCloseModal} photo={selectedPhoto} />
+        <PhotoDetailsModal
+          onClose={handleCloseModal}
+          photo={selectedPhoto}
+          favBadge={favBadge}
+          photos={photos}
+        />
       )}
     </div>
   );

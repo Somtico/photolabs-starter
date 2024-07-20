@@ -2,10 +2,8 @@ import React from "react";
 import TopNavigationBar from "components/TopNavigationBar";
 import PhotoList from "components/PhotoList";
 import "../styles/HomeRoute.scss";
-import useFavBadge from "components/useFavBadge";
 
-const HomeRoute = ({ topics, photos, setIsModalVisible, setSelectedPhoto }) => {
-  const favBadge = useFavBadge();
+const HomeRoute = ({ topics, photos, setIsModalVisible, setSelectedPhoto, favBadge }) => {
 
   return (
     <div className="home-route">

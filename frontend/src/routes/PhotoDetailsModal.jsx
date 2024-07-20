@@ -13,7 +13,7 @@ const PhotoDetailsModal = ({
   setSelectedPhoto,
 }) => {
   const similarPhotos = photos.filter((p) => p.id !== photo.id); // Filter out the current photo
-    
+
   return (
     <div className="photo-details-modal">
       <button className="photo-details-modal__close-button" onClick={onClose}>
@@ -35,19 +35,21 @@ const PhotoDetailsModal = ({
           <div className="photo-details-modal__photographer-info">
             <p>{photo.user.username}</p>
             <p className="photo-details-modal__photographer-location">
-            {photo.location ? `${photo.location.city}, ` : ""}
-            {photo.location ? photo.location.country : ""}
+              {photo.location ? `${photo.location.city}, ` : ""}
+              {photo.location ? photo.location.country : ""}
             </p>
           </div>
         </div>
         <div>
           <h3 className="photo-details-modal__header">Similar Photos</h3>
-          <PhotoList
-            photos={similarPhotos}
-            isFavPhotoExist={favBadge}
-            setIsModalVisible={setIsModalVisible}
-            setSelectedPhoto={setSelectedPhoto}
-          />
+          {similarPhotos && (
+            <PhotoList
+              photos={similarPhotos}
+              isFavPhotoExist={favBadge}
+              setIsModalVisible={setIsModalVisible}
+              setSelectedPhoto={setSelectedPhoto}
+            />
+          )}
         </div>
       </div>
     </div>

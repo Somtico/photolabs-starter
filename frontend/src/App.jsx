@@ -30,6 +30,8 @@ const App = () => {
           photo={selectedPhoto}
           favBadge={favBadge}
           photos={photos}
+          setSelectedPhoto={setSelectedPhoto}
+          setIsModalVisible={setIsModalVisible}
         />
       )}
     </div>

@@ -1,11 +1,9 @@
-import React, { useState } from "react";
+import React from "react";
 import "../styles/PhotoList.scss";
 import PhotoListItem from "./PhotoListItem";
 import PhotoDetailsModal from "routes/PhotoDetailsModal";
 
-const PhotoList = ({ photos, isFavPhotoExist }) => {
-  const [isModalVisible, setIsModalVisible] = useState(false);
-
+const PhotoList = ({ photos, isFavPhotoExist, isModalVisible, setIsModalVisible }) => {
   const handlePhotoClick = () => {
     setIsModalVisible(true);
   };

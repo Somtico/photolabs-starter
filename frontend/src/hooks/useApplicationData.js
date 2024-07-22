@@ -1,29 +1,41 @@
-import { useState } from "react";
+import { useReducer } from "react";
+import { reducer, ACTIONS } from "context/reducer";
 import useFavBadge from "hooks/useFavBadge";
 
+const initialState = {
+  isModalVisible: false,
+  selectedPhoto: null,
+  selected: {},
+  displayAlert: false,
+  photos: [],
+  topics: [],
+};
+
 const useApplicationData = () => {
-  const [isModalVisible, setIsModalVisible] = useState(false);
-  const [selectedPhoto, setSelectedPhoto] = useState(null);
-  const { selected, displayAlert, toggleFavourite, updateToFavPhotoIds } = useFavBadge();
+  const { selected, displayAlert, toggleFavourite, updateToFavPhotoIds } =
+    useFavBadge();
+  const [state, dispatch] = useReducer(reducer, initialState);
+
+  const setSelectedPhoto = (photo) => {
+    dispatch({ type: ACTIONS.SELECT_PHOTO, photo });
+  };
 
   const handleCloseModal = () => {
-    setIsModalVisible(false);
+    dispatch({ type: ACTIONS.CLOSE_PHOTO_DETAILS_MODAL });
   };
 
   return {
     state: {
-      isModalVisible,
-      selectedPhoto,
       selected,
-      displayAlert
+      displayAlert,
     },
     actions: {
       toggleFavourite,
       updateToFavPhotoIds,
       setSelectedPhoto,
       handleCloseModal,
-      setIsModalVisible
-    }
+      dispatch,
+    },
   };
 };
 

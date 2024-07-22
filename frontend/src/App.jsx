@@ -5,17 +5,12 @@ import topics from "mocks/topics";
 import "./App.scss";
 import PhotoDetailsModal from "routes/PhotoDetailsModal";
 import useApplicationData from "hooks/useApplicationData";
+import { ACTIONS } from "context/reducer"; // Make sure to import ACTIONS
 
 const App = () => {
   const {
     state: { isModalVisible, selectedPhoto, selected, displayAlert },
-    actions: {
-      toggleFavourite,
-      updateToFavPhotoIds,
-      setSelectedPhoto,
-      handleCloseModal,
-      setIsModalVisible,
-    },
+    actions: { toggleFavourite, setSelectedPhoto, handleCloseModal, dispatch }
   } = useApplicationData();
 
   return (
@@ -23,18 +18,18 @@ const App = () => {
       <HomeRoute
         topics={topics}
         photos={photos}
-        setIsModalVisible={setIsModalVisible}
+        setIsModalVisible={(visible) => dispatch({ type: ACTIONS.DISPLAY_PHOTO_DETAILS, visible })}
         setSelectedPhoto={setSelectedPhoto}
-        favBadge={{ selected, displayAlert, toggleFavourite, updateToFavPhotoIds }}
+        favBadge={{ selected, displayAlert, toggleFavourite }}
       />
       {isModalVisible && (
         <PhotoDetailsModal
           onClose={handleCloseModal}
           photo={selectedPhoto}
+          favBadge={{ selected, displayAlert, toggleFavourite }}
           photos={photos}
           setSelectedPhoto={setSelectedPhoto}
-          setIsModalVisible={setIsModalVisible}
-          favBadge={{ selected, displayAlert, toggleFavourite, updateToFavPhotoIds }}
+          setIsModalVisible={(visible) => dispatch({ type: ACTIONS.DISPLAY_PHOTO_DETAILS, visible })}
         />
       )}
     </div>

@@ -4,15 +4,15 @@ const useFavBadge = () => {
   const [selected, setSelected] = useState({});
   const [displayAlert, setDisplayAlert] = useState(false);
 
-  const handleClick = (photoId) => {
+  const toggleFavourite = (photoId) => {
     setSelected((prevSelected) => ({
       ...prevSelected,
       [photoId]: !prevSelected[photoId],
     }));
-    setDisplayAlert(true);
+    setDisplayAlert(!displayAlert);
   };
 
-  return { selected, displayAlert, handleClick };
+  return { selected, displayAlert, toggleFavourite };
 };
 
 export default useFavBadge;

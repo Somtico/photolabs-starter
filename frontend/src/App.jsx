@@ -10,7 +10,7 @@ const App = () => {
   const {
     state: { isModalVisible, selectedPhoto, selected, displayAlert },
     actions: {
-      handleClick,
+      toggleFavourite,
       updateToFavPhotoIds,
       setSelectedPhoto,
       handleCloseModal,
@@ -25,7 +25,7 @@ const App = () => {
         photos={photos}
         setIsModalVisible={setIsModalVisible}
         setSelectedPhoto={setSelectedPhoto}
-        favBadge={{ selected, displayAlert, handleClick, updateToFavPhotoIds }}
+        favBadge={{ selected, displayAlert, toggleFavourite, updateToFavPhotoIds }}
       />
       {isModalVisible && (
         <PhotoDetailsModal
@@ -34,7 +34,7 @@ const App = () => {
           photos={photos}
           setSelectedPhoto={setSelectedPhoto}
           setIsModalVisible={setIsModalVisible}
-          favBadge={{ selected, displayAlert, handleClick, updateToFavPhotoIds }}
+          favBadge={{ selected, displayAlert, toggleFavourite, updateToFavPhotoIds }}
         />
       )}
     </div>

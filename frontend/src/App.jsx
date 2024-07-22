@@ -1,19 +1,22 @@
-import React, { useState } from "react";
+import React from "react";
 import HomeRoute from "routes/HomeRoute";
 import photos from "mocks/photos";
 import topics from "mocks/topics";
 import "./App.scss";
 import PhotoDetailsModal from "routes/PhotoDetailsModal";
-import useFavBadge from "components/useFavBadge";
+import useApplicationData from "hooks/useApplicationData";
 
 const App = () => {
-  const [isModalVisible, setIsModalVisible] = useState(false);
-  const [selectedPhoto, setSelectedPhoto] = useState(null);
-  const favBadge = useFavBadge();
-
-  const handleCloseModal = () => {
-    setIsModalVisible(false);
-  };
+  const {
+    state: { isModalVisible, selectedPhoto, selected, displayAlert },
+    actions: {
+      handleClick,
+      updateToFavPhotoIds,
+      setSelectedPhoto,
+      handleCloseModal,
+      setIsModalVisible,
+    },
+  } = useApplicationData();
 
   return (
     <div className="App">
@@ -22,16 +25,16 @@ const App = () => {
         photos={photos}
         setIsModalVisible={setIsModalVisible}
         setSelectedPhoto={setSelectedPhoto}
-        favBadge={favBadge}
+        favBadge={{ selected, displayAlert, handleClick, updateToFavPhotoIds }}
       />
       {isModalVisible && (
         <PhotoDetailsModal
           onClose={handleCloseModal}
           photo={selectedPhoto}
-          favBadge={favBadge}
           photos={photos}
           setSelectedPhoto={setSelectedPhoto}
           setIsModalVisible={setIsModalVisible}
+          favBadge={{ selected, displayAlert, handleClick, updateToFavPhotoIds }}
         />
       )}
     </div>

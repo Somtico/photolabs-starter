@@ -1,5 +1,5 @@
-import { useReducer } from "react";
-import { reducer } from "context/reducer";
+import { useReducer, useCallback } from 'react';
+import { reducer } from 'context/reducer';
 import { ACTIONS } from 'context/actions';
 
 const initialState = {
@@ -12,21 +12,29 @@ const initialState = {
 const useApplicationData = () => {
   const [state, dispatch] = useReducer(reducer, initialState);
 
-  const setSelectedPhoto = (photo) => {
+  const setSelectedPhoto = useCallback((photo) => {
     dispatch({ type: ACTIONS.SELECT_PHOTO, payload: photo });
-  };
+  }, []);
 
-  const handleCloseModal = () => {
+  const handleCloseModal = useCallback(() => {
     dispatch({ type: ACTIONS.CLOSE_PHOTO_DETAILS_MODAL });
-  };
+  }, []);
+
+  const setPhotos = useCallback((photos) => {
+    dispatch({ type: ACTIONS.SET_PHOTOS, payload: photos });
+  }, []);
+
+  const setTopics = useCallback((topics) => {
+    dispatch({ type: ACTIONS.SET_TOPICS, payload: topics });
+  }, []);
 
   return {
-    state: {
-      ...state,
-    },
+    state,
     actions: {
       setSelectedPhoto,
       handleCloseModal,
+      setPhotos,
+      setTopics,
       dispatch,
     },
   };

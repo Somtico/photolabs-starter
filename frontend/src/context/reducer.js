@@ -43,6 +43,16 @@ export function reducer(state, action) {
         ...state,
         isModalVisible: false
       };
+    case ACTIONS.SET_PHOTOS:
+      return {
+        ...state,
+        photos: action.payload
+      };
+    case ACTIONS.SET_TOPICS:
+      return {
+        ...state,
+        topics: action.payload
+      };
     default:
       throw new Error(`Tried to reduce with unsupported action type: ${action.type}`);
   }

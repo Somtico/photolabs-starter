@@ -1,18 +1,25 @@
-import { useState } from "react";
+import { useReducer } from "react";
+import { reducer, ACTIONS } from "context/reducer";
+
+const initialState = {
+  selected: {},
+  displayAlert: false,
+};
 
 const useFavBadge = () => {
-  const [selected, setSelected] = useState({});
-  const [displayAlert, setDisplayAlert] = useState(false);
+  const [state, dispatch] = useReducer(reducer, initialState);
 
   const toggleFavourite = (photoId) => {
-    setSelected((prevSelected) => ({
-      ...prevSelected,
-      [photoId]: !prevSelected[photoId],
-    }));
-    setDisplayAlert(!displayAlert);
+    const actionType = state.selected[photoId] ? ACTIONS.FAV_PHOTO_REMOVED : ACTIONS.FAV_PHOTO_ADDED;
+    dispatch({ type: actionType, photoId });
+    dispatch({ type: ACTIONS.DISPLAY_PHOTO_DETAILS }); // If displayAlert is to be managed here
   };
 
-  return { selected, displayAlert, toggleFavourite };
+  return {
+    selected: state.selected,
+    displayAlert: state.displayAlert,
+    toggleFavourite,
+  };
 };
 
 export default useFavBadge;

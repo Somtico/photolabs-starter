@@ -1,19 +1,14 @@
 import { useReducer } from "react";
 import { reducer, ACTIONS } from "context/reducer";
-import useFavBadge from "hooks/useFavBadge";
 
 const initialState = {
   isModalVisible: false,
   selectedPhoto: null,
-  selected: {},
-  displayAlert: false,
   photos: [],
   topics: [],
 };
 
 const useApplicationData = () => {
-  const { selected, displayAlert, toggleFavourite, updateToFavPhotoIds } =
-    useFavBadge();
   const [state, dispatch] = useReducer(reducer, initialState);
 
   const setSelectedPhoto = (photo) => {
@@ -26,12 +21,9 @@ const useApplicationData = () => {
 
   return {
     state: {
-      selected,
-      displayAlert,
+      ...state,
     },
     actions: {
-      toggleFavourite,
-      updateToFavPhotoIds,
       setSelectedPhoto,
       handleCloseModal,
       dispatch,

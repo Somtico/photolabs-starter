@@ -5,20 +5,22 @@ import topics from "mocks/topics";
 import "./App.scss";
 import PhotoDetailsModal from "routes/PhotoDetailsModal";
 import useApplicationData from "hooks/useApplicationData";
-import { ACTIONS } from "context/reducer"; // Make sure to import ACTIONS
+import useFavBadge from "hooks/useFavBadge"; // Import useFavBadge
 
 const App = () => {
   const {
-    state: { isModalVisible, selectedPhoto, selected, displayAlert },
-    actions: { toggleFavourite, setSelectedPhoto, handleCloseModal, dispatch }
+    state: { isModalVisible, selectedPhoto },
+    actions: { setSelectedPhoto, handleCloseModal, dispatch },
   } = useApplicationData();
+  
+  const { selected, displayAlert, toggleFavourite } = useFavBadge(); // Use useFavBadge directly
 
   return (
     <div className="App">
       <HomeRoute
         topics={topics}
         photos={photos}
-        setIsModalVisible={(visible) => dispatch({ type: ACTIONS.DISPLAY_PHOTO_DETAILS, visible })}
+        setIsModalVisible={(visible) => dispatch({ type: ACTIONS.DISPLAY_PHOTO_DETAILS })}
         setSelectedPhoto={setSelectedPhoto}
         favBadge={{ selected, displayAlert, toggleFavourite }}
       />
@@ -29,7 +31,7 @@ const App = () => {
           favBadge={{ selected, displayAlert, toggleFavourite }}
           photos={photos}
           setSelectedPhoto={setSelectedPhoto}
-          setIsModalVisible={(visible) => dispatch({ type: ACTIONS.DISPLAY_PHOTO_DETAILS, visible })}
+          setIsModalVisible={(visible) => dispatch({ type: ACTIONS.DISPLAY_PHOTO_DETAILS })}
         />
       )}
     </div>

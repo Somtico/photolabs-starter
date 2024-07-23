@@ -1,11 +1,11 @@
-import React from "react";
-import HomeRoute from "routes/HomeRoute";
-import photos from "mocks/photos";
-import topics from "mocks/topics";
-import "./App.scss";
-import PhotoDetailsModal from "routes/PhotoDetailsModal";
-import useApplicationData from "hooks/useApplicationData";
-import useFavBadge from "hooks/useFavBadge"; // Import useFavBadge
+import React from 'react';
+import HomeRoute from 'routes/HomeRoute';
+import photos from 'mocks/photos';
+import topics from 'mocks/topics';
+import './App.scss';
+import PhotoDetailsModal from 'routes/PhotoDetailsModal';
+import useApplicationData from 'hooks/useApplicationData';
+import useFavBadge from 'hooks/useFavBadge';
 
 const App = () => {
   const {
@@ -13,7 +13,7 @@ const App = () => {
     actions: { setSelectedPhoto, handleCloseModal, dispatch },
   } = useApplicationData();
   
-  const { selected, displayAlert, toggleFavourite } = useFavBadge(); // Use useFavBadge directly
+  const { selected, displayAlert, toggleFavourite } = useFavBadge();
 
   return (
     <div className="App">

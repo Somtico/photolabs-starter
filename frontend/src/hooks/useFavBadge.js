@@ -1,5 +1,6 @@
 import { useReducer } from "react";
-import { reducer, ACTIONS } from "context/reducer";
+import { reducer } from "context/reducer";
+import { ACTIONS } from 'context/actions';
 
 const initialState = {
   selected: {},

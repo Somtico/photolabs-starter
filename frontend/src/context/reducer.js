@@ -39,7 +39,7 @@ export function reducer(state, action) {
     case ACTIONS.SELECT_PHOTO:
       return {
         ...state,
-        selectedPhoto: action.photo
+        selectedPhoto: action.payload
       };
     case ACTIONS.DISPLAY_PHOTO_DETAILS:
       return {

@@ -12,7 +12,7 @@ const useApplicationData = () => {
   const [state, dispatch] = useReducer(reducer, initialState);
 
   const setSelectedPhoto = (photo) => {
-    dispatch({ type: ACTIONS.SELECT_PHOTO, photo });
+    dispatch({ type: ACTIONS.SELECT_PHOTO, payload: photo });
   };
 
   const handleCloseModal = () => {

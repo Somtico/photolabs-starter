@@ -1,12 +1,12 @@
-import { useReducer, useCallback } from 'react';
-import { reducer } from 'context/reducer';
-import { ACTIONS } from 'context/actions';
+import { useReducer, useCallback, useEffect } from "react";
+import { reducer } from "context/reducer";
+import { ACTIONS } from "context/actions";
 
 const initialState = {
   isModalVisible: false,
   selectedPhoto: null,
-  photos: [],
-  topics: [],
+  photoData: [],
+  topicData: [],
 };
 
 const useApplicationData = () => {
@@ -16,25 +16,38 @@ const useApplicationData = () => {
     dispatch({ type: ACTIONS.SELECT_PHOTO, payload: photo });
   }, []);
 
+  const setIsModalVisible = useCallback(() => {
+    dispatch({ type: ACTIONS.DISPLAY_PHOTO_DETAILS });
+  }, []);
+
   const handleCloseModal = useCallback(() => {
     dispatch({ type: ACTIONS.CLOSE_PHOTO_DETAILS_MODAL });
   }, []);
 
-  const setPhotos = useCallback((photos) => {
-    dispatch({ type: ACTIONS.SET_PHOTOS, payload: photos });
-  }, []);
+  useEffect(() => {
+    // Fetch photo data
+    fetch("/api/photos")
+      .then((res) => res.json())
+      .then((photoData) =>
+        dispatch({ type: ACTIONS.SET_PHOTO_DATA, payload: photoData })
+      )
+      .catch((error) => console.error("Error fetching photo data:", error));
 
-  const setTopics = useCallback((topics) => {
-    dispatch({ type: ACTIONS.SET_TOPICS, payload: topics });
+    // Fetch topic data
+    fetch("/api/topics")
+      .then((res) => res.json())
+      .then((topicData) =>
+        dispatch({ type: ACTIONS.SET_TOPIC_DATA, payload: topicData })
+      )
+      .catch((error) => console.error("Error fetching photo data:", error));
   }, []);
 
   return {
     state,
     actions: {
       setSelectedPhoto,
+      setIsModalVisible,
       handleCloseModal,
-      setPhotos,
-      setTopics,
       dispatch,
     },
   };

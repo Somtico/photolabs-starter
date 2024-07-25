@@ -7,6 +7,7 @@ const initialState = {
   selectedPhoto: null,
   photoData: [],
   topicData: [],
+  error: null,
 };
 
 const useApplicationData = () => {
@@ -31,7 +32,13 @@ const useApplicationData = () => {
       .then((photoData) =>
         dispatch({ type: ACTIONS.SET_PHOTO_DATA, payload: photoData })
       )
-      .catch((error) => console.error("Error fetching photo data:", error));
+      .catch((error) => {
+        console.error("Error fetching photo data:", error);
+        dispatch({
+          type: ACTIONS.SET_ERROR,
+          payload: "Failed to fetch photo data",
+        });
+      });
 
     // Fetch topic data
     fetch("/api/topics")
@@ -39,7 +46,13 @@ const useApplicationData = () => {
       .then((topicData) =>
         dispatch({ type: ACTIONS.SET_TOPIC_DATA, payload: topicData })
       )
-      .catch((error) => console.error("Error fetching photo data:", error));
+      .catch((error) => {
+        console.error("Error fetching topic data:", error);
+        dispatch({
+          type: ACTIONS.SET_ERROR,
+          payload: "Failed to fetch topic data",
+        });
+      });
   }, []);
 
   return {

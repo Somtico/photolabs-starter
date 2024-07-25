@@ -1,4 +1,4 @@
-import { ACTIONS } from './actions';
+import { ACTIONS } from "./actions";
 
 export function reducer(state, action) {
   switch (action.type) {
@@ -7,53 +7,47 @@ export function reducer(state, action) {
         ...state,
         selected: {
           ...state.selected,
-          [action.photoId]: true
-        }
+          [action.photoId]: true,
+        },
       };
     case ACTIONS.FAV_PHOTO_REMOVED:
       return {
         ...state,
         selected: {
           ...state.selected,
-          [action.photoId]: false
-        }
+          [action.photoId]: false,
+        },
       };
     case ACTIONS.SET_PHOTO_DATA:
       return {
         ...state,
-        photoData: action.payload
+        photoData: action.payload,
       };
     case ACTIONS.SET_TOPIC_DATA:
       return {
         ...state,
-        topicData: action.payload
+        topicData: action.payload,
       };
     case ACTIONS.SELECT_PHOTO:
       return {
         ...state,
-        selectedPhoto: action.payload
+        selectedPhoto: action.payload,
       };
     case ACTIONS.DISPLAY_PHOTO_DETAILS:
       return {
         ...state,
-        isModalVisible: true
+        isModalVisible: true,
       };
     case ACTIONS.CLOSE_PHOTO_DETAILS_MODAL:
       return {
         ...state,
-        isModalVisible: false
+        isModalVisible: false,
       };
-    case ACTIONS.SET_PHOTOS:
-      return {
-        ...state,
-        photos: action.payload
-      };
-    case ACTIONS.SET_TOPICS:
-      return {
-        ...state,
-        topics: action.payload
-      };
+    case ACTIONS.SET_ERROR:
+      return { ...state, error: action.payload };
     default:
-      throw new Error(`Tried to reduce with unsupported action type: ${action.type}`);
+      throw new Error(
+        `Tried to reduce with unsupported action type: ${action.type}`
+      );
   }
 }

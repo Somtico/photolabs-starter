@@ -1,20 +1,26 @@
-import React, { useEffect, useCallback } from 'react';
-import HomeRoute from 'routes/HomeRoute';
-import './App.scss';
-import PhotoDetailsModal from 'routes/PhotoDetailsModal';
-import useApplicationData from 'hooks/useApplicationData';
-import useFavBadge from 'hooks/useFavBadge';
+import React, { useEffect, useCallback } from "react";
+import HomeRoute from "routes/HomeRoute";
+import "./App.scss";
+import PhotoDetailsModal from "routes/PhotoDetailsModal";
+import useApplicationData from "hooks/useApplicationData";
+import useFavBadge from "hooks/useFavBadge";
 
 const App = () => {
   const {
-    state: { isModalVisible, selectedPhoto, photoData, topicData },
-    actions: { setSelectedPhoto, setIsModalVisible, handleCloseModal, dispatch },
+    state: { isModalVisible, selectedPhoto, photoData, topicData, error },
+    actions: {
+      setSelectedPhoto,
+      setIsModalVisible,
+      handleCloseModal,
+      dispatch,
+    },
   } = useApplicationData();
-  
+
   const { selected, displayAlert, toggleFavourite } = useFavBadge();
 
   return (
     <div className="App">
+      {error && <div className="error-message">{error}</div>}
       <HomeRoute
         topics={topicData}
         photos={photoData}

@@ -34,7 +34,6 @@ const useApplicationData = () => {
         dispatch({ type: ACTIONS.SET_ACTIVE_TOPIC, payload: topicId })
       })
       .catch((error) => {
-        console.error("Error fetching photos by topic:", error);
         dispatch({
           type: ACTIONS.SET_ERROR,
           payload: "Failed to fetch photos by topic",
@@ -50,7 +49,6 @@ const useApplicationData = () => {
         dispatch({ type: ACTIONS.SET_PHOTO_DATA, payload: photoData })
       )
       .catch((error) => {
-        console.error("Error fetching photo data:", error);
         dispatch({
           type: ACTIONS.SET_ERROR,
           payload: "Failed to fetch photo data",
@@ -64,7 +62,6 @@ const useApplicationData = () => {
         dispatch({ type: ACTIONS.SET_TOPIC_DATA, payload: topicData })
       )
       .catch((error) => {
-        console.error("Error fetching topic data:", error);
         dispatch({
           type: ACTIONS.SET_ERROR,
           payload: "Failed to fetch topic data",

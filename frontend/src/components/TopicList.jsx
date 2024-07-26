@@ -2,7 +2,7 @@ import React from "react";
 import "../styles/TopicList.scss";
 import TopicListItem from "./TopicListItem";
 
-const TopicList = ({ topics, fetchPhotosByTopic }) => {
+const TopicList = ({ topics, activeTopic, fetchPhotosByTopic }) => {
   const handleTopicClick = (topicId) => {
     fetchPhotosByTopic(topicId);
   };
@@ -14,6 +14,7 @@ const TopicList = ({ topics, fetchPhotosByTopic }) => {
           key={topic.id}
           topicData={topic}
           onClick={() => handleTopicClick(topic.id)}
+          isActive={topic.id === activeTopic}
         />
       ))}
     </div>

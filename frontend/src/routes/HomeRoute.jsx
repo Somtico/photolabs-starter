@@ -6,8 +6,9 @@ import "../styles/HomeRoute.scss";
 const HomeRoute = ({
   topics,
   photos,
-  setIsModalVisible,
   setSelectedPhoto,
+  setIsModalVisible,
+  activeTopic,
   fetchPhotosByTopic,
   favBadge,
 }) => {
@@ -16,6 +17,7 @@ const HomeRoute = ({
       <TopNavigationBar
         topics={topics}
         isFavPhotoExist={favBadge}
+        activeTopic={activeTopic}
         fetchPhotosByTopic={fetchPhotosByTopic}
       />
       <PhotoList

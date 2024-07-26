@@ -33,6 +33,11 @@ export function reducer(state, action) {
         ...state,
         topicData: action.payload,
       };
+      case ACTIONS.SET_ACTIVE_TOPIC:
+      return {
+        ...state,
+        activeTopic: action.payload,
+      };
     case ACTIONS.SELECT_PHOTO:
       return {
         ...state,

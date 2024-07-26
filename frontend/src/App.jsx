@@ -7,7 +7,7 @@ import useFavBadge from "hooks/useFavBadge";
 
 const App = () => {
   const {
-    state: { isModalVisible, selectedPhoto, photoData, topicData, error },
+    state: { isModalVisible, selectedPhoto, photoData, topicData, activeTopic, error },
     actions: {
       setSelectedPhoto,
       setIsModalVisible,
@@ -24,6 +24,7 @@ const App = () => {
       <HomeRoute
         topics={topicData}
         photos={photoData}
+        activeTopic={activeTopic}
         setIsModalVisible={setIsModalVisible}
         setSelectedPhoto={setSelectedPhoto}
         fetchPhotosByTopic={fetchPhotosByTopic}

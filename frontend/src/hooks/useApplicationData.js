@@ -7,6 +7,7 @@ const initialState = {
   selectedPhoto: null,
   photoData: [],
   topicData: [],
+  activeTopic: null,
   error: null,
 };
 
@@ -28,9 +29,10 @@ const useApplicationData = () => {
   const fetchPhotosByTopic = useCallback((topicId) => {
     fetch(`/api/topics/photos/${topicId}`)
       .then((res) => res.json())
-      .then((photoData) =>
-        dispatch({ type: ACTIONS.SET_PHOTOS_BY_TOPIC, payload: photoData })
-      )
+      .then((photoData) => {
+        dispatch({ type: ACTIONS.SET_PHOTOS_BY_TOPIC, payload: photoData });
+        dispatch({ type: ACTIONS.SET_ACTIVE_TOPIC, payload: topicId })
+      })
       .catch((error) => {
         console.error("Error fetching photos by topic:", error);
         dispatch({

@@ -12,7 +12,7 @@ const App = () => {
       setSelectedPhoto,
       setIsModalVisible,
       handleCloseModal,
-      dispatch,
+      fetchPhotosByTopic,
     },
   } = useApplicationData();
 
@@ -26,6 +26,7 @@ const App = () => {
         photos={photoData}
         setIsModalVisible={setIsModalVisible}
         setSelectedPhoto={setSelectedPhoto}
+        fetchPhotosByTopic={fetchPhotosByTopic}
         favBadge={{ selected, displayAlert, toggleFavourite }}
       />
       {isModalVisible && (

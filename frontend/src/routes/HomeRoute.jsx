@@ -3,11 +3,21 @@ import TopNavigationBar from "components/TopNavigationBar";
 import PhotoList from "components/PhotoList";
 import "../styles/HomeRoute.scss";
 
-const HomeRoute = ({ topics, photos, setIsModalVisible, setSelectedPhoto, favBadge }) => {
-
+const HomeRoute = ({
+  topics,
+  photos,
+  setIsModalVisible,
+  setSelectedPhoto,
+  fetchPhotosByTopic,
+  favBadge,
+}) => {
   return (
     <div className="home-route">
-      <TopNavigationBar topics={topics} isFavPhotoExist={favBadge} />
+      <TopNavigationBar
+        topics={topics}
+        isFavPhotoExist={favBadge}
+        fetchPhotosByTopic={fetchPhotosByTopic}
+      />
       <PhotoList
         photos={photos}
         isFavPhotoExist={favBadge}

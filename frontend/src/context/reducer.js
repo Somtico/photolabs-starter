@@ -18,6 +18,11 @@ export function reducer(state, action) {
           [action.photoId]: false,
         },
       };
+    case ACTIONS.SET_PHOTOS_BY_TOPIC:
+      return {
+        ...state,
+        photoData: action.payload,
+      };
     case ACTIONS.SET_PHOTO_DATA:
       return {
         ...state,

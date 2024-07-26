@@ -25,6 +25,21 @@ const useApplicationData = () => {
     dispatch({ type: ACTIONS.CLOSE_PHOTO_DETAILS_MODAL });
   }, []);
 
+  const fetchPhotosByTopic = useCallback((topicId) => {
+    fetch(`/api/topics/photos/${topicId}`)
+      .then((res) => res.json())
+      .then((photoData) =>
+        dispatch({ type: ACTIONS.SET_PHOTOS_BY_TOPIC, payload: photoData })
+      )
+      .catch((error) => {
+        console.error("Error fetching photos by topic:", error);
+        dispatch({
+          type: ACTIONS.SET_ERROR,
+          payload: "Failed to fetch photos by topic",
+        });
+      });
+  }, []);
+
   useEffect(() => {
     // Fetch photo data
     fetch("/api/photos")
@@ -61,7 +76,7 @@ const useApplicationData = () => {
       setSelectedPhoto,
       setIsModalVisible,
       handleCloseModal,
-      dispatch,
+      fetchPhotosByTopic,
     },
   };
 };

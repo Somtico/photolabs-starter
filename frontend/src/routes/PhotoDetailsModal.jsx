@@ -1,4 +1,5 @@
-import React from "react";
+import React, { useRef } from "react";
+import useClickOutside from "../hooks/useClickOutside";
 import PhotoFavButton from "components/PhotoFavButton";
 import "../styles/PhotoDetailsModal.scss";
 import closeSymbol from "../assets/closeSymbol.svg";
@@ -14,8 +15,11 @@ const PhotoDetailsModal = ({
 }) => {
   const similarPhotos = photos.filter((p) => p.id !== photo.id); // Filter out the current photo
 
+  const modalRef = useRef(null);
+  useClickOutside(modalRef, onClose);
+
   return (
-    <div className="photo-details-modal">
+    <div className="photo-details-modal" ref={modalRef}>
       <button className="photo-details-modal__close-button" onClick={onClose}>
         <img src={closeSymbol} alt="close symbol" />
       </button>

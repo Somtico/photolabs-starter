@@ -33,7 +33,7 @@ export function reducer(state, action) {
         ...state,
         topicData: action.payload,
       };
-      case ACTIONS.SET_ACTIVE_TOPIC:
+    case ACTIONS.SET_ACTIVE_TOPIC:
       return {
         ...state,
         activeTopic: action.payload,
@@ -52,6 +52,11 @@ export function reducer(state, action) {
       return {
         ...state,
         isModalVisible: false,
+      };
+    case ACTIONS.SET_SIMILAR_PHOTOS:
+      return {
+        ...state,
+        similarPhotos: action.payload,
       };
     case ACTIONS.SET_ERROR:
       return { ...state, error: action.payload };

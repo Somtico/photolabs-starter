@@ -8,6 +8,7 @@ const initialState = {
   photoData: [],
   topicData: [],
   activeTopic: null,
+  similarPhotos: [],
   error: null,
 };
 
@@ -26,20 +27,54 @@ const useApplicationData = () => {
     dispatch({ type: ACTIONS.CLOSE_PHOTO_DETAILS_MODAL });
   }, []);
 
+  const setSimilarPhotos = useCallback((topicId) => {    
+    if (!topicId) {
+      console.error("Invalid topicId for similar photos");
+      dispatch({
+        type: ACTIONS.SET_ERROR,
+        payload: "Invalid topicId",
+      });
+      return;
+    }
+    
+    fetch(`/api/topics/photos/${topicId}`)
+      .then((res) => res.json())
+      .then((similarPhotos) => {
+        dispatch({
+          type: ACTIONS.SET_SIMILAR_PHOTOS,
+          payload: similarPhotos,
+        });
+      })
+      .catch((error) => {
+        console.error("Error fetching similar photos:", error);
+        dispatch({
+          type: ACTIONS.SET_ERROR,
+          payload: "Failed to fetch similar photos",
+        });
+      });
+  }, []);
+
   const fetchPhotosByTopic = useCallback((topicId) => {
+    if (!topicId) {
+      console.error("No topicId provided");
+      return;
+    }
+  
     fetch(`/api/topics/photos/${topicId}`)
       .then((res) => res.json())
       .then((photoData) => {
-        dispatch({ type: ACTIONS.SET_PHOTOS_BY_TOPIC, payload: photoData });
-        dispatch({ type: ACTIONS.SET_ACTIVE_TOPIC, payload: topicId })
+        const photosWithTopic = photoData.map(photo => ({...photo, topicId}));
+        dispatch({ type: ACTIONS.SET_PHOTOS_BY_TOPIC, payload: photosWithTopic });
+        dispatch({ type: ACTIONS.SET_ACTIVE_TOPIC, payload: topicId });
       })
       .catch((error) => {
+        console.error("Error fetching photos by topic:", error);
         dispatch({
           type: ACTIONS.SET_ERROR,
           payload: "Failed to fetch photos by topic",
         });
       });
-  }, []);
+  }, []);  
 
   useEffect(() => {
     // Fetch photo data
@@ -49,6 +84,7 @@ const useApplicationData = () => {
         dispatch({ type: ACTIONS.SET_PHOTO_DATA, payload: photoData })
       )
       .catch((error) => {
+        console.error("Error fetching photo data:", error);
         dispatch({
           type: ACTIONS.SET_ERROR,
           payload: "Failed to fetch photo data",
@@ -62,6 +98,7 @@ const useApplicationData = () => {
         dispatch({ type: ACTIONS.SET_TOPIC_DATA, payload: topicData })
       )
       .catch((error) => {
+        console.error("Error fetching topic data:", error);
         dispatch({
           type: ACTIONS.SET_ERROR,
           payload: "Failed to fetch topic data",
@@ -74,6 +111,7 @@ const useApplicationData = () => {
     actions: {
       setSelectedPhoto,
       setIsModalVisible,
+      setSimilarPhotos,
       handleCloseModal,
       fetchPhotosByTopic,
     },

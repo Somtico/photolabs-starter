@@ -7,10 +7,19 @@ import useFavBadge from "hooks/useFavBadge";
 
 const App = () => {
   const {
-    state: { isModalVisible, selectedPhoto, photoData, topicData, activeTopic, error },
+    state: {
+      isModalVisible,
+      selectedPhoto,
+      photoData,
+      topicData,
+      activeTopic,
+      similarPhotos,
+      error,
+    },
     actions: {
       setSelectedPhoto,
       setIsModalVisible,
+      setSimilarPhotos,
       handleCloseModal,
       fetchPhotosByTopic,
     },
@@ -38,6 +47,8 @@ const App = () => {
           photos={photoData}
           setSelectedPhoto={setSelectedPhoto}
           setIsModalVisible={setIsModalVisible}
+          similarPhotosList={similarPhotos}
+          setSimilarPhotos={setSimilarPhotos}
         />
       )}
     </div>

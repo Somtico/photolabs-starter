@@ -1,22 +1,29 @@
-import React, { useRef } from "react";
-import useClickOutside from "../hooks/useClickOutside";
+import React, { useEffect, useRef } from "react";
 import PhotoFavButton from "components/PhotoFavButton";
 import "../styles/PhotoDetailsModal.scss";
 import closeSymbol from "../assets/closeSymbol.svg";
 import PhotoList from "components/PhotoList";
+import useClickOutside from "../hooks/useClickOutside";
 
 const PhotoDetailsModal = ({
   onClose,
   photo,
   favBadge,
-  photos,
   setIsModalVisible,
   setSelectedPhoto,
+  similarPhotosList,
+  setSimilarPhotos,
 }) => {
-  const similarPhotos = photos.filter((p) => p.id !== photo.id); // Filter out the current photo
-
   const modalRef = useRef(null);
   useClickOutside(modalRef, onClose);
+
+  useEffect(() => {
+    if (photo) {
+      setSimilarPhotos(photo.topicId);
+    }
+  }, [photo, setSimilarPhotos]);
+
+  const similarPhotos = similarPhotosList.filter((p) => p.id !== photo.id);
 
   return (
     <div className="photo-details-modal" ref={modalRef}>
@@ -39,11 +46,11 @@ const PhotoDetailsModal = ({
           <div className="photo-details-modal__photographer-info">
             <p>{photo.user.username}</p>
             <p className="photo-details-modal__photographer-location">
-            {photo.location &&
-              (photo.location.city ? `${photo.location.city}, ` : "")}
-            {photo.location &&
-              (photo.location.country ? photo.location.country : "")}
-          </p>
+              {photo.location &&
+                (photo.location.city ? `${photo.location.city}, ` : "")}
+              {photo.location &&
+                (photo.location.country ? photo.location.country : "")}
+            </p>
           </div>
         </div>
         <div>
@@ -51,6 +58,7 @@ const PhotoDetailsModal = ({
           {similarPhotos && (
             <PhotoList
               photos={similarPhotos}
+              setSimilarPhotos={setSimilarPhotos}
               isFavPhotoExist={favBadge}
               setIsModalVisible={setIsModalVisible}
               setSelectedPhoto={setSelectedPhoto}

@@ -15,7 +15,7 @@ const useFavBadge = () => {
       ? ACTIONS.FAV_PHOTO_REMOVED
       : ACTIONS.FAV_PHOTO_ADDED;
     dispatch({ type: actionType, photoId });
-    dispatch({ type: ACTIONS.DISPLAY_PHOTO_DETAILS }); // If displayAlert is to be managed here
+    dispatch({ type: ACTIONS.DISPLAY_PHOTO_DETAILS });
   };
 
   return {

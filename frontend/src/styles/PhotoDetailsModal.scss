@@ -46,6 +46,8 @@
 .photo-details-modal__photographer-details {
   display: flex;
   font-size: 16px;
+  align-items: center;
+  padding: 8px 0;
 }
 
 .photo-details-modal__header {
@@ -63,10 +65,9 @@
 .photo-details-modal__photographer-profile {
   object-fit: cover;
   border-radius: 100%;
-  vertical-align: middle;
   margin-right: 8px;
-  width: 40px;
-  height: 40px;
+  width: 60px;
+  height: 60px;
 }
 
 .photo-details-modal__photographer-info {

@@ -60,6 +60,11 @@ export function reducer(state, action) {
       };
     case ACTIONS.SET_ERROR:
       return { ...state, error: action.payload };
+    case ACTIONS.SET_SEARCH_RESULTS:
+      return { ...state, searchResults: action.payload };
+    case ACTIONS.SET_SEARCH_ERROR:
+      return { ...state, error: action.payload };
+
     default:
       throw new Error(
         `Tried to reduce with unsupported action type: ${action.type}`

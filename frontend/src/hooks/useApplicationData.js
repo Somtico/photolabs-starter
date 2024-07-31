@@ -9,6 +9,7 @@ const initialState = {
   topicData: [],
   activeTopic: null,
   similarPhotos: [],
+  searchResults: [],
   error: null,
 };
 
@@ -27,7 +28,7 @@ const useApplicationData = () => {
     dispatch({ type: ACTIONS.CLOSE_PHOTO_DETAILS_MODAL });
   }, []);
 
-  const setSimilarPhotos = useCallback((topicId) => {    
+  const setSimilarPhotos = useCallback((topicId) => {
     if (!topicId) {
       console.error("Invalid topicId for similar photos");
       dispatch({
@@ -36,7 +37,7 @@ const useApplicationData = () => {
       });
       return;
     }
-    
+
     fetch(`/api/topics/photos/${topicId}`)
       .then((res) => res.json())
       .then((similarPhotos) => {
@@ -59,12 +60,18 @@ const useApplicationData = () => {
       console.error("No topicId provided");
       return;
     }
-  
+
     fetch(`/api/topics/photos/${topicId}`)
       .then((res) => res.json())
       .then((photoData) => {
-        const photosWithTopic = photoData.map(photo => ({...photo, topicId}));
-        dispatch({ type: ACTIONS.SET_PHOTOS_BY_TOPIC, payload: photosWithTopic });
+        const photosWithTopic = photoData.map((photo) => ({
+          ...photo,
+          topicId,
+        }));
+        dispatch({
+          type: ACTIONS.SET_PHOTOS_BY_TOPIC,
+          payload: photosWithTopic,
+        });
         dispatch({ type: ACTIONS.SET_ACTIVE_TOPIC, payload: topicId });
       })
       .catch((error) => {
@@ -74,7 +81,7 @@ const useApplicationData = () => {
           payload: "Failed to fetch photos by topic",
         });
       });
-  }, []);  
+  }, []);
 
   useEffect(() => {
     // Fetch photo data
@@ -106,6 +113,23 @@ const useApplicationData = () => {
       });
   }, []);
 
+  const searchPhotos = useCallback((query) => {  
+    fetch(`/api/photos/search?${new URLSearchParams({ query })}`)
+      .then((res) => {
+        return res.json();
+      })
+      .then((searchResults) => {
+        dispatch({ type: ACTIONS.SET_SEARCH_RESULTS, payload: searchResults });
+        return searchResults; // Return the results for the next then block
+      })
+      .catch((error) => {
+        dispatch({
+          type: ACTIONS.SET_SEARCH_ERROR,
+          payload: "Failed to search photos",
+        });
+      });
+  }, []);
+
   return {
     state,
     actions: {
@@ -114,6 +138,7 @@ const useApplicationData = () => {
       setSimilarPhotos,
       handleCloseModal,
       fetchPhotosByTopic,
+      searchPhotos,
     },
   };
 };

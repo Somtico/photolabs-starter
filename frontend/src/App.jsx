@@ -14,6 +14,7 @@ const App = () => {
       topicData,
       activeTopic,
       similarPhotos,
+      searchResults,
       error,
     },
     actions: {
@@ -22,6 +23,7 @@ const App = () => {
       setSimilarPhotos,
       handleCloseModal,
       fetchPhotosByTopic,
+      searchPhotos,
     },
   } = useApplicationData();
 
@@ -37,6 +39,8 @@ const App = () => {
         setIsModalVisible={setIsModalVisible}
         setSelectedPhoto={setSelectedPhoto}
         fetchPhotosByTopic={fetchPhotosByTopic}
+        searchPhotos={searchPhotos}
+        searchResults={searchResults}
         favBadge={{ selected, displayAlert, toggleFavourite }}
       />
       {isModalVisible && (

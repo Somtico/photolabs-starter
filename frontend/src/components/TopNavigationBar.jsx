@@ -1,6 +1,7 @@
-import React from "react";
+import React, { useState } from "react";
 import TopicList from "./TopicList";
 import FavBadge from "./FavBadge";
+import SearchBar from "./SearchBar";
 import "../styles/TopNavigationBar.scss";
 
 const TopNavigationBar = ({
@@ -8,7 +9,9 @@ const TopNavigationBar = ({
   isFavPhotoExist,
   activeTopic,
   fetchPhotosByTopic,
+  searchPhotos,
 }) => {
+  
   return (
     <div className="top-nav-bar">
       <span className="top-nav-bar__logo">
@@ -20,6 +23,7 @@ const TopNavigationBar = ({
           activeTopic={activeTopic}
           fetchPhotosByTopic={fetchPhotosByTopic}
         />
+        <SearchBar searchPhotos={searchPhotos} />
         <FavBadge isFavPhotoExist={isFavPhotoExist} />
       </div>
     </div>

@@ -10,6 +10,8 @@ const HomeRoute = ({
   setIsModalVisible,
   activeTopic,
   fetchPhotosByTopic,
+  searchPhotos,
+  searchResults,
   favBadge,
 }) => {
   return (
@@ -19,9 +21,11 @@ const HomeRoute = ({
         isFavPhotoExist={favBadge}
         activeTopic={activeTopic}
         fetchPhotosByTopic={fetchPhotosByTopic}
+        searchPhotos={searchPhotos}
+        searchResults={searchResults}
       />
       <PhotoList
-        photos={photos}
+        photos={searchResults.length > 0 ? searchResults : photos}
         isFavPhotoExist={favBadge}
         setIsModalVisible={setIsModalVisible}
         setSelectedPhoto={setSelectedPhoto}
